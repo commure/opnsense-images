@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <opnsense>
   <theme>opnsense</theme>
-  <sysctl version="1.0.1" persisted_at="1753829512.99">
+  <sysctl version="1.0.2" persisted_at="1770947154.57" description="System Tunables">
     <item uuid="0f863c2b-68b6-408d-a3b2-195a1dac608a">
       <tunable>vfs.read_max</tunable>
       <value/>
@@ -268,11 +268,6 @@
     <disablenatreflection>yes</disablenatreflection>
     <usevirtualterminal>1</usevirtualterminal>
     <disableconsolemenu/>
-    <disablevlanhwfilter>1</disablevlanhwfilter>
-    <disablechecksumoffloading>1</disablechecksumoffloading>
-    <disablesegmentationoffloading>1</disablesegmentationoffloading>
-    <disablelargereceiveoffloading>1</disablelargereceiveoffloading>
-    <ipv6allow/>
     <powerd_ac_mode>hadp</powerd_ac_mode>
     <powerd_battery_mode>hadp</powerd_battery_mode>
     <powerd_normal_mode>hadp</powerd_normal_mode>
@@ -467,11 +462,11 @@
       <general version="0.0.1">
         <enabled>0</enabled>
       </general>
-      <server version="1.0.0">
+      <server version="1.0.1" persisted_at="1770947156.41" description="WireGuard instance configuration">
         <servers/>
       </server>
     </wireguard>
-    <IPsec version="1.0.4" persisted_at="1753829514.10">
+    <IPsec version="1.0.5" persisted_at="1770947156.37" description="IPsec settings">
       <general>
         <enabled/>
         <preferred_oldsa>0</preferred_oldsa>
@@ -495,6 +490,7 @@
         <retransmit_base/>
         <retransmit_jitter/>
         <retransmit_limit/>
+        <reqid_base/>
         <syslog>
           <daemon>
             <ike_name>1</ike_name>
@@ -603,7 +599,7 @@
       <activeTimeout>1800</activeTimeout>
       <inactiveTimeout>15</inactiveTimeout>
     </Netflow>
-    <IDS version="1.1.0" persisted_at="1753829514.58">
+    <IDS version="1.1.2" persisted_at="1770947157.09" description="Intrusion detection">
       <rules/>
       <policies/>
       <userDefinedRules/>
@@ -611,7 +607,8 @@
       <fileTags/>
       <general>
         <enabled>0</enabled>
-        <ips>0</ips>
+        <mode>pcap</mode>
+        <divert_listeners>1</divert_listeners>
         <promisc>0</promisc>
         <interfaces>wan</interfaces>
         <homenet>192.168.0.0/16,10.0.0.0/8,172.16.0.0/12</homenet>
@@ -648,6 +645,17 @@
       <loopbacks version="1.0.0"/>
       <neighbors version="1.0.0"/>
       <vxlans version="1.0.2"/>
+      <settings version="1.0.0" persisted_at="1770947155.54" description="Global interface settings">
+        <disablechecksumoffloading>1</disablechecksumoffloading>
+        <disablesegmentationoffloading>1</disablesegmentationoffloading>
+        <disablelargereceiveoffloading>1</disablelargereceiveoffloading>
+        <disablevlanhwfilter>1</disablevlanhwfilter>
+        <disableipv6>0</disableipv6>
+        <dhcp6_norelease>0</dhcp6_norelease>
+        <dhcp6_debug>0</dhcp6_debug>
+        <dhcp6_duid/>
+        <dhcp6_ratimeout>10</dhcp6_ratimeout>
+      </settings>
     </Interfaces>
     <Kea>
       <ctrl_agent version="0.0.1">
@@ -694,7 +702,7 @@
         <ha_peers/>
       </dhcp6>
     </Kea>
-    <monit version="1.0.13" persisted_at="1753829511.99">
+    <monit version="1.0.14" persisted_at="1770947152.58" description="Monit settings">
       <general>
         <enabled>0</enabled>
         <interval>120</interval>
@@ -773,7 +781,7 @@
         <type>custom</type>
         <pidfile/>
         <match/>
-        <path>/usr/local/opnsense/scripts/OPNsense/Monit/carp_status</path>
+        <path>/usr/local/opnsense/scripts/monit/carp_status.php</path>
         <timeout>300</timeout>
         <starttimeout>30</starttimeout>
         <address/>
@@ -791,7 +799,7 @@
         <type>custom</type>
         <pidfile/>
         <match/>
-        <path>/usr/local/opnsense/scripts/OPNsense/Monit/gateway_alert</path>
+        <path>/usr/local/opnsense/scripts/monit/gateway_alert.php</path>
         <timeout>300</timeout>
         <starttimeout>30</starttimeout>
         <address/>
@@ -895,7 +903,7 @@
       <queues/>
       <rules/>
     </TrafficShaper>
-    <unboundplus version="1.0.12" persisted_at="1753829515.60">
+    <unboundplus version="1.0.13" persisted_at="1770947158.50" description="Unbound configuration">
       <general>
         <enabled>1</enabled>
         <port>53</port>
@@ -912,6 +920,7 @@
         <noregrecords/>
         <txtsupport/>
         <cacheflush/>
+        <safesearch/>
         <local_zone_type>transparent</local_zone_type>
         <outgoing_interface/>
         <enable_wpad/>
@@ -959,17 +968,7 @@
       <acls>
         <default_action>allow</default_action>
       </acls>
-      <dnsbl>
-        <enabled>0</enabled>
-        <safesearch/>
-        <type/>
-        <lists/>
-        <whitelists/>
-        <blocklists/>
-        <wildcards/>
-        <address/>
-        <nxdomain/>
-      </dnsbl>
+      <dnsbl/>
       <forwarding>
         <enabled/>
       </forwarding>
@@ -993,6 +992,16 @@
         <MinProtocol_DTLS/>
       </general>
     </trust>
+    <Hostwatch version="1.0.0" persisted_at="1770947156.47" description="Host discovery">
+      <general>
+        <enabled>1</enabled>
+        <promisc>0</promisc>
+        <verbose>0</verbose>
+        <skip_nets/>
+        <interface/>
+      </general>
+    </Hostwatch>
+    <radvd version="1.0.0" persisted_at="1770947156.49" description="Radvd configuration"/>
   </OPNsense>
   <openvpn/>
   <ifgroups version="1.0.0"/>
@@ -1028,11 +1037,11 @@
         </prv>
   </cert>
   <revision>
-    <username>root@10.0.2.2</username>
-    <description>/api/auth/user/del_api_key/Qy94V3pKYm1Dbk1NN0dPWUVrOExpYjYzd01pUU9xTmRITEE0ZUR0SmMvR1VYQUwwbk1XY1d1Skt3bExnbElXckNVUThPQ20yYzYzTlpEdGk= made changes</description>
-    <time>1753832285.23</time>
+    <username>(system)</username>
+    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
+    <time>1770947158.51</time>
   </revision>
-  <dnsmasq version="1.0.7" persisted_at="1753829512.97">
+  <dnsmasq version="1.0.8" persisted_at="1770947154.54" description="Dnsmasq DNS and DHCP">
     <enable>0</enable>
     <regdhcp>0</regdhcp>
     <regdhcpstatic>0</regdhcpstatic>
@@ -1058,12 +1067,15 @@
       <no_interface/>
       <fqdn>1</fqdn>
       <domain/>
+      <local>1</local>
       <lease_max/>
       <authoritative>0</authoritative>
       <default_fw_rules>1</default_fw_rules>
       <reply_delay/>
       <enable_ra>0</enable_ra>
       <nosync>0</nosync>
+      <log_dhcp>0</log_dhcp>
+      <log_quiet>0</log_quiet>
     </dhcp>
     <no_ident>1</no_ident>
   </dnsmasq>

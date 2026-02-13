@@ -5,12 +5,12 @@ on:
       - main
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 env:
   PKR_VAR_MIRROR: https://mirror.init7.net/opnsense
-  PKR_VAR_VERSION: 25.7
-  PKR_VAR_ISO_CHECKSUM: sha1:e388904d39e4e9604a89111b8410c98474782a41
+  PKR_VAR_VERSION: 26.1
+  PKR_VAR_ISO_CHECKSUM: sha1:236cd10533cf85ded25230f600c08db2ac1b8b30
 
 jobs:
   build-image:
@@ -53,7 +53,7 @@ jobs:
           packer build .
         env:
           PACKER_LOG: 1
-      
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:

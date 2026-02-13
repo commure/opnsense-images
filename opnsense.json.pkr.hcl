@@ -78,9 +78,9 @@ source "qemu" "opnsense" {
   ]
 
   # You may use this for debug purpose
-  # vnc_bind_address = "0.0.0.0"
-  # vnc_port_min = 5901
-  # vnc_port_max = 5901
+  vnc_bind_address = "0.0.0.0"
+  vnc_port_min = 5901
+  vnc_port_max = 5901
 
   vm_name = "opnsense.qcow2"
 }
