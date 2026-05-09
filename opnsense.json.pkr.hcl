@@ -101,9 +101,9 @@ build {
 
 variable "VERSION" {
   type    = string
-  default = "25.7"
+  default = "26.1"
   validation {
-    condition = can(regex("^\\d{2}\\.\\d$", var.VERSION))
+    condition = can(regex("^\\d{2}\\.\\d(?:.\\d{1,2})?$", var.VERSION))
     error_message = "The version should be XX.X. Ex: 25.7."
   }
 }
