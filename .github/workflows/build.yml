@@ -9,8 +9,8 @@ on:
 
 env:
   PKR_VAR_MIRROR: https://mirror.init7.net/opnsense
-  PKR_VAR_VERSION: 26.1
-  PKR_VAR_ISO_CHECKSUM: sha1:236cd10533cf85ded25230f600c08db2ac1b8b30
+  PKR_VAR_VERSION: 26.1.2
+  PKR_VAR_ISO_CHECKSUM: sha1:50cbf4a2148ee06514a9538567296528387838be
 
 jobs:
   build-image:
