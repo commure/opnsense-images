@@ -399,9 +399,6 @@
       </destination>
     </rule>
   </filter>
-  <rrd>
-    <enable/>
-  </rrd>
   <load_balancer>
     <monitor_type>
       <name>ICMP</name>
@@ -559,7 +556,7 @@
       <Instances/>
       <StaticKeys/>
     </OpenVPN>
-    <captiveportal version="1.0.4" persisted_at="1753829512.97">
+    <captiveportal version="1.0.5" persisted_at="1787751638.79" description="Captive portal application model">
       <zones/>
       <templates/>
     </captiveportal>
@@ -579,7 +576,8 @@
       <Category version="1.0.0">
         <categories/>
       </Category>
-      <Filter version="1.0.4" persisted_at="1753829512.46">
+      <Filter version="1.0.5" persisted_at="1787751638.04" description="Firewall rules (new)">
+        <general/>
         <rules/>
         <snatrules/>
         <npt/>
@@ -665,15 +663,27 @@
           <http_port>8000</http_port>
         </general>
       </ctrl_agent>
-      <dhcp4 version="1.0.4" persisted_at="1753829514.15">
+      <dhcp4 version="1.0.5" persisted_at="1787751641.21" description="Kea DHCPv4 configuration">
         <general>
           <enabled>0</enabled>
           <manual_config>0</manual_config>
           <interfaces/>
+          <service_sockets_max_retries/>
+          <service_sockets_retry_wait_time/>
           <valid_lifetime>4000</valid_lifetime>
+          <decline_probation_period/>
           <fwrules>1</fwrules>
           <dhcp_socket_type>raw</dhcp_socket_type>
+          <compatibility/>
         </general>
+        <lexpire>
+          <hold_reclaimed_time/>
+          <reclaim_timer_wait_time/>
+          <flush_reclaimed_timer_wait_time/>
+          <max_reclaim_time/>
+          <max_reclaim_leases/>
+          <unwarned_reclaim_cycles/>
+        </lexpire>
         <ha>
           <enabled>0</enabled>
           <this_server_name/>
@@ -681,16 +691,29 @@
         </ha>
         <subnets/>
         <reservations/>
+        <options/>
         <ha_peers/>
       </dhcp4>
-      <dhcp6 version="1.0.0" persisted_at="1753829514.14">
+      <dhcp6 version="1.0.2" persisted_at="1787751641.01" description="Kea DHCPv6 configuration">
         <general>
           <enabled>0</enabled>
           <manual_config>0</manual_config>
           <interfaces/>
+          <service_sockets_max_retries/>
+          <service_sockets_retry_wait_time/>
           <valid_lifetime>4000</valid_lifetime>
+          <decline_probation_period/>
+          <mac_sources>ipv6-link-local</mac_sources>
           <fwrules>1</fwrules>
         </general>
+        <lexpire>
+          <hold_reclaimed_time/>
+          <reclaim_timer_wait_time/>
+          <flush_reclaimed_timer_wait_time/>
+          <max_reclaim_time/>
+          <max_reclaim_leases/>
+          <unwarned_reclaim_cycles/>
+        </lexpire>
         <ha>
           <enabled>0</enabled>
           <this_server_name/>
@@ -698,9 +721,18 @@
         </ha>
         <subnets/>
         <reservations/>
+        <options/>
         <pd_pools/>
         <ha_peers/>
       </dhcp6>
+      <ddns version="1.0.0" persisted_at="1787751641.21" description="Kea Dynamic DNS configuration">
+        <general>
+          <enabled>0</enabled>
+          <manual_config>0</manual_config>
+          <server_ip>127.0.0.1</server_ip>
+          <server_port>53001</server_port>
+        </general>
+      </ddns>
     </Kea>
     <monit version="1.0.14" persisted_at="1770947152.58" description="Monit settings">
       <general>
@@ -903,7 +935,7 @@
       <queues/>
       <rules/>
     </TrafficShaper>
-    <unboundplus version="1.0.13" persisted_at="1770947158.50" description="Unbound configuration">
+    <unboundplus version="1.0.15" persisted_at="1787751642.81" description="Unbound configuration">
       <general>
         <enabled>1</enabled>
         <port>53</port>
@@ -931,6 +963,7 @@
         <prefetch/>
         <prefetchkey/>
         <dnssecstripped/>
+        <belownxdomain>1</belownxdomain>
         <aggressivensec>1</aggressivensec>
         <serveexpired/>
         <serveexpiredreplyttl/>
@@ -1001,7 +1034,10 @@
         <interface/>
       </general>
     </Hostwatch>
-    <radvd version="1.0.0" persisted_at="1770947156.49" description="Radvd configuration"/>
+    <radvd version="1.0.1" persisted_at="1787751641.23" description="Radvd configuration"/>
+    <SystemHealth version="1.0.0" persisted_at="1787751642.60" description="RRD graphing backend configuration">
+      <enabled>1</enabled>
+    </SystemHealth>
   </OPNsense>
   <openvpn/>
   <ifgroups version="1.0.0"/>
@@ -1012,7 +1048,7 @@
   <vlans version="1.0.0">
     <vlan/>
   </vlans>
-  <staticroutes version="1.0.0"/>
+  <staticroutes version="1.0.1" persisted_at="1787751642.80" description="Static routes"/>
   <bridges version="1.0.0" persisted_at="1753829513.76"/>
   <gifs version="1.0.0" persisted_at="1753829513.75"/>
   <gres version="1.0.0" persisted_at="1753829513.75"/>
@@ -1037,11 +1073,11 @@
         </prv>
   </cert>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
-    <time>1770947158.51</time>
+    <username>(root)</username>
+    <description>/usr/local/bin/opn-apikey made changes</description>
+    <time>1787752553.67</time>
   </revision>
-  <dnsmasq version="1.0.8" persisted_at="1770947154.54" description="Dnsmasq DNS and DHCP">
+  <dnsmasq version="1.0.9" persisted_at="1787751638.79" description="Dnsmasq DNS and DHCP">
     <enable>0</enable>
     <regdhcp>0</regdhcp>
     <regdhcpstatic>0</regdhcpstatic>
@@ -1073,6 +1109,7 @@
       <default_fw_rules>1</default_fw_rules>
       <reply_delay/>
       <enable_ra>0</enable_ra>
+      <host_ping>1</host_ping>
       <nosync>0</nosync>
       <log_dhcp>0</log_dhcp>
       <log_quiet>0</log_quiet>
@@ -1091,4 +1128,9 @@
     <password/>
     <syncitems/>
   </hasync>
+  <nat>
+    <outbound>
+      <mode>automatic</mode>
+    </outbound>
+  </nat>
 </opnsense>

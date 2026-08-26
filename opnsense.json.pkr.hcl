@@ -12,7 +12,7 @@ source "qemu" "opnsense" {
   boot_steps = [
     ["1", "Boot in multi user mod"],
     ["<wait6m>", "Waiting 3min for guest to start"],
-    ["root<enter>opnsense<enter><wait3s>", "Login into the firewall"],
+    ["root<enter><wait2s>opnsense<enter><wait3s>", "Login into the firewall"],
     ["1<enter><wait2s>", "Start manual interface assignment"],
     ["N<enter><wait2s>", "Do not configure LAGGs now"],
     ["N<enter><wait2s>", "Do not configure VLANs now"],
@@ -31,7 +31,7 @@ source "qemu" "opnsense" {
     ["<down><enter><wait2s><enter><wait3s>", "Use UFS"],
     ["<enter><wait2s><left><enter><wait10m>", "Select the disk and install OPNsense"],
     ["<down><enter><wait2s><enter><wait5m>", "Exit installer and wait 2min for guest to start"],
-    ["root<enter>opnsense<enter><wait5s>", "Login into the firewall"],
+    ["root<enter><wait2s>opnsense<enter><wait5s>", "Login into the firewall"],
     ["8<enter><wait2s>pfctl -d<enter><wait2s>", "Disabling firewall"],
     [
       "curl -o /usr/local/bin/opn-apikey http://{{ .HTTPIP }}:{{ .HTTPPort }}/opn-apikey<enter><wait3s>",
@@ -101,7 +101,7 @@ build {
 
 variable "VERSION" {
   type    = string
-  default = "26.1"
+  default = "26.7"
   validation {
     condition = can(regex("^\\d{2}\\.\\d(?:.\\d{1,2})?$", var.VERSION))
     error_message = "The version should be XX.X. Ex: 25.7."
